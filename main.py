@@ -12,8 +12,9 @@ from contextlib import asynccontextmanager
 from fastapi.responses import StreamingResponse
 from agentipy.agent import SolanaAgentKit
 from agentipy.tools.get_balance import BalanceFetcher
+from agentipy.tools.transfer import TokenTransferManager
 import os    # Configure logging
-
+from typing import Optional
 load_dotenv()
 
 
@@ -26,11 +27,26 @@ async def create_comprehensive_tool_registry() -> ToolRegistry:
     tool_registry = ToolRegistry()
 
     @tool_registry.register_tool("get_balance_solana")
-    async def get_balance(address: str) -> str:
-        """Get the balance of a Solana address."""
-        balance_sol = await BalanceFetcher.get_balance(agent)
-        return f"Balance of {address}: {balance_sol } SOL"
+    async def get_balance(address:Optional[str]=None) -> str:
+        """Get the balance of a Solana address. if no address is provided, it will return the balance of the private key address"""
 
+        try:
+            balance_sol = await BalanceFetcher.get_balance(agent,token_address=address)
+            return {"status":"success","data":balance_sol}
+        except Exception as e:
+            return {"status":"error","message":str(e)}
+
+    @tool_registry.register_tool("transfer_solana")
+    async def transfer_solana(address:str,amount:float) -> str:
+        """Transfer SOL to a Solana address"""
+        try:
+            sig= await TokenTransferManager.transfer(agent,to=address,amount=amount)
+            return {"status":"success","message":"SOL transferred successfully", "data":f"SOL transferred to {address} successfully", "signature":sig}
+        except Exception as e:
+            return {"status":"error","message":str(e)}
+        
+   
+    return tool_registry
    
 
     # File system tools
@@ -46,7 +62,40 @@ async def lifespan(app: FastAPI):
 
     agent = OmniAgent(
             name="solana_agent",
-            system_instruction="you are a solana agent that can check the balance of a solana address and you are also a comprehensive AI assistant with access to mathematical, text processing, system information, data analysis, and file system tools. You can perform complex calculations, format text, analyze data, and provide system information. Always use the appropriate tools for the task and provide clear, helpful responses. you are not allowed to use any tools that are not in the tool registry or return any information that is not in the tool registry or respond to a question that is not in the tool registry. you are also not allowed to use any tools that are not in the tool registry or return any information that is not in the tool registry or respond to a question that is not in the tool registry. you are also not allowed to use any tools that are not in the tool registry or return any information that is not in the tool registry or respond to a question that is not in the tool registry. you",
+            system_instruction="""
+<role>
+You are a Solana agent with the ability to check balances and transfer SOL. You are also a comprehensive AI assistant with access to various tools.
+</role>
+
+<capabilities>
+- Check Solana address balances using get_balance_solana tool
+- Transfer SOL using transfer_solana tool
+- Provide system information and assistance
+</capabilities>
+
+<important_rules>
+<rule>You MUST only use tools that are available in the tool registry</rule>
+<rule>You MUST NOT provide information or respond to questions outside your tool capabilities</rule>
+<rule>CRITICAL: Before ANY SOL transfer, you MUST first check the current balance using get_balance_solana tool</rule>
+<rule>You MUST verify that the available balance is sufficient for the requested transfer amount</rule>
+<rule>If balance is insufficient, inform the user and do NOT proceed with the transfer</rule>
+<rule>Only call transfer_solana after confirming sufficient balance</rule>
+<rule>Always provide clear, helpful responses using appropriate tools</rule>
+</important_rules>
+
+<transfer_workflow>
+When asked to transfer SOL:
+1. First call get_balance_solana to check current balance
+2. Compare current balance with requested transfer amount
+3. If balance >= transfer amount: proceed with transfer_solana
+4. If balance < transfer amount: inform user of insufficient funds and current balance
+5. Always show both current balance and transfer amount in your response
+</transfer_workflow>
+
+<response_format>
+Use clear, structured responses. When reporting balances or transfer results, present the information in an organized manner using XML-like tags for clarity.
+</response_format>
+            """,
             model_config={
                 "provider": "openai",
                 "model": "gpt-4.1",

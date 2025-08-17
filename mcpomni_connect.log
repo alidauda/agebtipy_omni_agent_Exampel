@@ -692,3 +692,115 @@ This is a balance request, but there are no tools available in the current tool 
 I'm sorry, but I am unable to check your balance because no balance-checking tools are currently available.
 </final_answer>
 2025-08-17 18:05:32 - mcpomni_connect - INFO - current steps: 1
+2025-08-17 21:44:13 - mcpomni_connect - INFO - Initialized In-Memory Event Store
+2025-08-17 21:44:13 - mcpomni_connect - WARNING - No MCP tools provided, using local tools only
+2025-08-17 21:44:13 - mcpomni_connect - INFO - Successfully transformed configuration for 0 MCP tools
+2025-08-17 21:44:13 - mcpomni_connect - INFO - Configuration saved to .omniagent_config\servers_config_solana_agent.json
+2025-08-17 21:44:13 - mcpomni_connect - INFO - updating llm configuration
+2025-08-17 21:44:13 - mcpomni_connect - INFO - Loading configuration from: servers_config_solana_agent.json
+2025-08-17 21:44:13 - mcpomni_connect - INFO - LLM configuration: {'provider': 'openai', 'model': 'openai/gpt-4.1', 'temperature': 0.7, 'max_tokens': 5000, 'top_p': 0.7}
+2025-08-17 21:45:44 - mcpomni_connect - INFO - Sending 2 messages to LLM
+2025-08-17 21:45:50 - mcpomni_connect - INFO - API Call Stats - Requests: 1/1000, Tokens: 4234/40000000, Request Tokens: 4151, Response Tokens: 83, Total Tokens: 4234, Remaining Requests: 999, Remaining Tokens: 39995766
+2025-08-17 21:45:50 - mcpomni_connect - INFO - XML final answer format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user is asking for their balance, but they have not provided a Solana address. To proceed, I need the user's Solana address to check the balance.
+</thought>
+<final_answer>
+I can check your Solana balance for you. Please provide your Solana address.
+</final_answer>
+2025-08-17 21:45:50 - mcpomni_connect - INFO - current steps: 1
+2025-08-17 21:48:20 - mcpomni_connect - INFO - Initialized In-Memory Event Store
+2025-08-17 21:48:20 - mcpomni_connect - WARNING - No MCP tools provided, using local tools only
+2025-08-17 21:48:20 - mcpomni_connect - INFO - Successfully transformed configuration for 0 MCP tools
+2025-08-17 21:48:20 - mcpomni_connect - INFO - Configuration saved to .omniagent_config\servers_config_solana_agent.json
+2025-08-17 21:48:20 - mcpomni_connect - INFO - updating llm configuration
+2025-08-17 21:48:20 - mcpomni_connect - INFO - Loading configuration from: servers_config_solana_agent.json
+2025-08-17 21:48:20 - mcpomni_connect - INFO - LLM configuration: {'provider': 'openai', 'model': 'openai/gpt-4.1', 'temperature': 0.7, 'max_tokens': 5000, 'top_p': 0.7}
+2025-08-17 21:48:29 - mcpomni_connect - INFO - Sending 2 messages to LLM
+2025-08-17 21:48:33 - mcpomni_connect - INFO - API Call Stats - Requests: 1/1000, Tokens: 4284/40000000, Request Tokens: 4168, Response Tokens: 116, Total Tokens: 4284, Remaining Requests: 999, Remaining Tokens: 39995716
+2025-08-17 21:48:33 - mcpomni_connect - INFO - XML tool call format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user is asking for their balance but did not specify a Solana address. According to the tool description, if no address is provided, the tool will return the balance of the private key address (presumably the default account). I will proceed to call the get_balance_solana tool without specifying an address.
+</thought>
+<tool_call>
+  <tool_name>get_balance_solana</tool_name>
+  <parameters>
+  </parameters>
+</tool_call>
+2025-08-17 21:48:33 - mcpomni_connect - INFO - current steps: 1
+2025-08-17 21:48:38 - mcpomni_connect - INFO - Agent state changed from AgentState.RUNNING to AgentState.OBSERVING
+2025-08-17 21:48:38 - mcpomni_connect - INFO - Sending 3 messages to LLM
+2025-08-17 21:48:40 - mcpomni_connect - INFO - API Call Stats - Requests: 3/1000, Tokens: 8548/40000000, Request Tokens: 4191, Response Tokens: 73, Total Tokens: 4264, Remaining Requests: 997, Remaining Tokens: 39991452
+2025-08-17 21:48:40 - mcpomni_connect - INFO - XML final answer format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+You asked for your balance, and the get_balance_solana tool was used. The tool returned a balance of 0.001500002.
+</thought>
+<final_answer>Your Solana balance is 0.001500002 SOL.</final_answer>
+2025-08-17 21:48:40 - mcpomni_connect - INFO - current steps: 2
+2025-08-17 22:27:51 - mcpomni_connect - INFO - Initialized In-Memory Event Store
+2025-08-17 22:27:51 - mcpomni_connect - WARNING - No MCP tools provided, using local tools only
+2025-08-17 22:27:51 - mcpomni_connect - INFO - Successfully transformed configuration for 0 MCP tools
+2025-08-17 22:27:51 - mcpomni_connect - INFO - Configuration saved to .omniagent_config\servers_config_solana_agent.json
+2025-08-17 22:27:51 - mcpomni_connect - INFO - updating llm configuration
+2025-08-17 22:27:51 - mcpomni_connect - INFO - Loading configuration from: servers_config_solana_agent.json
+2025-08-17 22:27:51 - mcpomni_connect - INFO - LLM configuration: {'provider': 'openai', 'model': 'openai/gpt-4.1', 'temperature': 0.7, 'max_tokens': 5000, 'top_p': 0.7}
+2025-08-17 22:28:26 - mcpomni_connect - INFO - Sending 2 messages to LLM
+2025-08-17 22:28:32 - mcpomni_connect - INFO - API Call Stats - Requests: 1/1000, Tokens: 4472/40000000, Request Tokens: 4365, Response Tokens: 107, Total Tokens: 4472, Remaining Requests: 999, Remaining Tokens: 39995528
+2025-08-17 22:28:32 - mcpomni_connect - INFO - XML final answer format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user is asking about my capabilities. I can answer this directly based on my system knowledge and the tools available to me.
+</thought>
+<final_answer>
+I can check Solana wallet balances, transfer SOL (after verifying sufficient balance), and assist with a variety of general questions or tasks using my AI capabilities. If you need help with Solana transactions or have other questions, just let me know!
+</final_answer>
+2025-08-17 22:28:32 - mcpomni_connect - INFO - current steps: 1
+2025-08-17 22:29:27 - mcpomni_connect - INFO - Sending 2 messages to LLM
+2025-08-17 22:29:31 - mcpomni_connect - INFO - API Call Stats - Requests: 2/1000, Tokens: 8981/40000000, Request Tokens: 4381, Response Tokens: 128, Total Tokens: 4509, Remaining Requests: 998, Remaining Tokens: 39991019
+2025-08-17 22:29:31 - mcpomni_connect - INFO - XML tool call format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user wants to send 10 SOL to the address "ssssssssssssssssssssssssssssssssss22s2ssssssssss". According to the critical instructions, before initiating any transfer, I must first check the current balance using the get_balance_solana tool to ensure there are sufficient funds. I will proceed to check the balance.
+</thought>
+<tool_call>
+  <tool_name>get_balance_solana</tool_name>
+  <parameters>
+    <address></address>
+  </parameters>
+</tool_call>
+2025-08-17 22:29:31 - mcpomni_connect - INFO - current steps: 1
+2025-08-17 22:29:31 - mcpomni_connect - INFO - Agent state changed from AgentState.RUNNING to AgentState.OBSERVING
+2025-08-17 22:29:31 - mcpomni_connect - INFO - Sending 3 messages to LLM
+2025-08-17 22:29:33 - mcpomni_connect - INFO - API Call Stats - Requests: 4/1000, Tokens: 13530/40000000, Request Tokens: 4404, Response Tokens: 145, Total Tokens: 4549, Remaining Requests: 996, Remaining Tokens: 39986470
+2025-08-17 22:29:33 - mcpomni_connect - INFO - XML final answer format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user requested to send 10 SOL to the address "ssssssssssssssssssssssssssssssssss22s2ssssssssss". According to the balance check, the current available balance is 0.001500002 SOL, which is significantly less than the requested transfer amount of 10 SOL. Therefore, I cannot proceed with the transfer due to insufficient funds.
+</thought>
+<final_answer>
+Insufficient funds to complete the transfer. 
+Current balance: 0.001500002 SOL 
+Requested transfer amount: 10 SOL
+Please deposit more SOL to proceed with this transfer.
+</final_answer>
+2025-08-17 22:29:33 - mcpomni_connect - INFO - current steps: 2
+2025-08-17 22:31:01 - mcpomni_connect - INFO - Sending 2 messages to LLM
+2025-08-17 22:31:04 - mcpomni_connect - INFO - API Call Stats - Requests: 5/1000, Tokens: 17986/40000000, Request Tokens: 4365, Response Tokens: 91, Total Tokens: 4456, Remaining Requests: 995, Remaining Tokens: 39982014
+2025-08-17 22:31:04 - mcpomni_connect - INFO - XML tool call format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user is asking for their Solana account balance. Since no specific address was provided, I will check the balance of the default private key address using the get_balance_solana tool.
+</thought>
+<tool_call>
+  <tool_name>get_balance_solana</tool_name>
+  <parameters>
+  </parameters>
+</tool_call>
+2025-08-17 22:31:04 - mcpomni_connect - INFO - current steps: 1
+2025-08-17 22:31:05 - mcpomni_connect - INFO - Agent state changed from AgentState.RUNNING to AgentState.OBSERVING
+2025-08-17 22:31:05 - mcpomni_connect - INFO - Sending 3 messages to LLM
+2025-08-17 22:31:07 - mcpomni_connect - INFO - API Call Stats - Requests: 7/1000, Tokens: 22449/40000000, Request Tokens: 4388, Response Tokens: 75, Total Tokens: 4463, Remaining Requests: 993, Remaining Tokens: 39977551
+2025-08-17 22:31:07 - mcpomni_connect - INFO - XML final answer format detected in response: <thought>
+I checked both long-term and episodic memory but found no directly relevant information for this request.
+The user is asking for their Solana balance. The balance retrieval tool has already been called, and the observation result shows the current balance.
+</thought>
+<final_answer>
+Your current Solana balance is 0.001500002 SOL.
+</final_answer>
+2025-08-17 22:31:07 - mcpomni_connect - INFO - current steps: 2
